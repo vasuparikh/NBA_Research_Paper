@@ -1,0 +1,105 @@
+---
+title: "NBA"
+author: "Vasu Parikh"
+date: "April 26, 2018"
+output:
+  pdf_document: default
+  html_document: default
+---
+## CALCULATING WINNING PERCENTAGE USING MULTIPLE REGRESSION MODEL
+
+The FOLLOWING MODEL IS BASED ON 2017-18 NBA STATS DATA.
+```{r}
+setwd("C:/Users/Laptop/Documents/ISQA 8086/Research/NBA")
+NBAstats2018<-read.csv("2017-18_TeamStats.csv")
+NBAplayoffs2016<-read.csv("2016-17_TeamPlayoffsStats.csv")
+NBAStats2016<-read.csv("2016-17_TeamStats.csv")
+x3<-NBAstats2018$DREB
+x2<-NBAstats2018$FT_PCT
+x1<-NBAstats2018$Eff.FG
+x4<-NBAstats2018$TOV
+y<-NBAstats2018$W_PCT
+
+dfrm<-data.frame(y,x1,x2,x3,x4)
+m<-lm(formula = y ~ x1 + x2 + x3+ x4, data = dfrm)
+
+summary(m)
+```
+```{r}
+x<-NBAstats2018$OREB
+
+m1<-lm(formula = y ~ x1 + x2 + x + x4, data = dfrm)
+summary(m1)
+```
+
+THE FOOLOWING REGRESSION MODEL IS BASED ON DATA FROM 2016-17 PLAYOFFS AND REGULAR SEASON
+```{r}
+y1<-NBAplayoffs2016$W_PCT
+
+y2<-NBAplayoffs2016$Eff.FG
+y3<-NBAplayoffs2016$OREB
+y4<-NBAplayoffs2016$FT_PCT
+y5<-NBAplayoffs2016$TOV
+
+dfrm1<-data.frame(y1, y2, y3, y4, y5)
+
+m2<-lm(formula = y1 ~ y2 + y3 + y4 + y5, data = dfrm1)
+summary(m2)
+```
+
+```{r}
+x3<-NBAStats2016$DREB
+x2<-NBAStats2016$FT_PCT
+x1<-NBAStats2016$Eff.FG
+x4<-NBAStats2016$TOV
+y<-NBAStats2016$W_PCT
+
+
+dfrm<-data.frame(y,x1,x2,x3,x4)
+
+m<-lm(formula = y ~ x1 + x2 + x3+ x4, data = dfrm)
+
+summary(m)
+```
+```{r}
+x3<-NBAStats2016$OREB
+x2<-NBAStats2016$FT_PCT
+x1<-NBAStats2016$Eff.FG
+x4<-NBAStats2016$TOV
+y<-NBAStats2016$W_PCT
+
+
+dfrm<-data.frame(y,x1,x2,x3,x4)
+
+m<-lm(formula = y ~ x1 + x2 + x3+ x4, data = dfrm)
+
+summary(m)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
